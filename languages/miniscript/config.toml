@@ -1,0 +1,11 @@
+name = "MiniScript"
+grammar = "miniscript"
+path_suffixes = ["ms"]
+line_comments = ["//"]
+block_comment = ["/*", "*/"]
+brackets = [
+    { start = "{", end = "}", close = true, newline = true },
+    { start = "[", end = "]", close = true, newline = true },
+    { start = "(", end = ")", close = true, newline = true },
+    { start = "\"", end = "\"", close = true, newline = false },
+]
