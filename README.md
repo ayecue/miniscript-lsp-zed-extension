@@ -1,0 +1,1 @@
+# miniscript-lsp-zed-extension
