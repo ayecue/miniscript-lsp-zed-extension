@@ -17,6 +17,7 @@
   "or"
   "and"
   "isa"
+  "new"
 ] @keyword
 
 ; Constants
@@ -34,9 +35,18 @@
 (function_call
   name: (identifier) @function)
 
+(function_statement_call
+  name: (identifier) @function)
+
 ; Variables
 (variable
   name: (identifier) @variable)
+
+(variable
+  name: (dot_index_expression) @variable.property)
+
+(variable
+  name: (bracket_index_expression) @variable.property)
 
 ; Literals
 (number) @number
@@ -45,11 +55,27 @@
 ; Comments
 (comment) @comment
 
+; Method calls
+;--------------------------
+
+(function_call
+  name: (dot_index_expression) @function.method)
+
+(function_call
+  name: (bracket_index_expression) @function.method)
+
+(function_statement_call
+  name: (dot_index_expression) @function.method)
+
+(function_statement_call
+  name: (bracket_index_expression) @function.method)
+
 ; Tokens
 ;-------
 
 [
   "."
+  ":"
 ] @punctuation.delimiter
 
 [
