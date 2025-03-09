@@ -12,4 +12,4 @@ language = "MiniScript"
 
 [grammars.miniscript]
 repository = "https://github.com/ayecue/tree-sitter-miniscript"
-commit = "aa1df1d9e9e2f37d4936b78f1439e5f2d168daf4"
+commit = "4a71472c4b4b24ef3e803f93b22e208bb21e4ca4"
