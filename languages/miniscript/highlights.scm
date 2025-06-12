@@ -20,6 +20,13 @@
   "new"
 ] @keyword
 
+; Assignments
+(assignment_operator) @punctuation.assignment
+
+; For Iterator
+(for_statement 
+  variable: (identifier) @variable)
+
 ; Constants
 [
   (null)
@@ -31,22 +38,10 @@
 (break_statement) @keyword
 (continue_statement) @keyword
 
-; Function calls
-(function_call
-  name: (identifier) @function)
-
-(function_statement_call
-  name: (identifier) @function)
-
 ; Variables
-(variable
-  name: (identifier) @variable)
-
-(variable
-  name: (dot_index_expression) @variable.property)
-
-(variable
-  name: (bracket_index_expression) @variable.property)
+(variable (identifier) @variable)
+(variable (dot_index_expression) @variable.property)
+(variable (bracket_index_expression) @variable.property)
 
 ; Literals
 (number) @number
@@ -55,20 +50,34 @@
 ; Comments
 (comment) @comment
 
-; Method calls
+; Function defintiions arguments
+;--------------------------
+(function_definition 
+  parameters: (parameters (identifier)) @argument)
+
+; Function call statement
+;--------------------------
+
+(function_statement_call
+  name: (variable (identifier)) @function)
+
+(function_statement_call
+  name: (variable (dot_index_expression)) @function.method)
+
+(function_statement_call
+  name: (variable (bracket_index_expression)) @function.method)
+
+; Function call expression
 ;--------------------------
 
 (function_call
-  name: (dot_index_expression) @function.method)
+  name: (variable (identifier)) @function)
 
 (function_call
-  name: (bracket_index_expression) @function.method)
+  name: (variable (dot_index_expression)) @function.method)
 
-(function_statement_call
-  name: (dot_index_expression) @function.method)
-
-(function_statement_call
-  name: (bracket_index_expression) @function.method)
+(function_call
+  name: (variable (bracket_index_expression)) @function.method)
 
 ; Tokens
 ;-------
